@@ -12,7 +12,7 @@
 	<artifactId>mower</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>mower</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Demo of automatic lawn mower</description>
 	<url/>
 	<licenses>
 		<license/>
