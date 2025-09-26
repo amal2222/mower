@@ -1,5 +1,7 @@
 package com.libon.mower.domain;
 
+import java.util.List;
+
 public class Mower {
     private final String id;
     private Position position;
@@ -12,13 +14,53 @@ public class Mower {
         this.orientation = orientation;
         this.field = field;
     }
+    
 
-    public void setPosition(Position position) {
-        this.position = position;
+    public String getId() {
+        return id;
     }
 
-    public void setOrientation(Orientation orientation) {
-        this.orientation = orientation;
-    }    
+
+    public Position getPosition() {
+        return position;
+    }
+
+
+    public Orientation getOrientation() {
+        return orientation;
+    }
+
+
+    public Field getField() {
+        return field;
+    } 
+
+    public void executeInstructions(List<Instruction> instructions) {
+        for (Instruction instruction : instructions) {
+            executeInstruction(instruction);
+        }
+    }
+    
+    private void executeInstruction(Instruction instruction) {
+        switch (instruction) {
+            case G:
+                orientation = orientation.turnLeft();
+                break;
+            case D:
+                orientation = orientation.turnRight();
+                break;
+            case A:
+                moveForward();
+                break;
+        }
+    }
+
+    private void moveForward() {
+        Position newPosition = new Position(
+            position.getX() + orientation.getXMovement(),
+            position.getY() + orientation.getYMovement()
+        );
+            position = newPosition;
+    }
 
 }
