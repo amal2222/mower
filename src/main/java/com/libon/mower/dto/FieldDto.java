@@ -1,7 +1,12 @@
 package com.libon.mower.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class FieldDto {
+    @JsonProperty("max_x")
     private int maxX;
+
+    @JsonProperty("max_y")
     private int maxY;
     
     public FieldDto(int maxX, int maxY) {

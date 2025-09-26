@@ -2,12 +2,16 @@ package com.libon.mower.dto;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.libon.mower.domain.Instruction;
 import com.libon.mower.domain.Orientation;
 
 public class MowerRequest {
     private String id;
+
+    @JsonProperty("start_position")
     private PositionDto startPosition;
+    
     private Orientation orientation;
     private List<Instruction> instructions;
     public MowerRequest(String id, PositionDto startPosition, Orientation orientation, List<Instruction> instructions) {
