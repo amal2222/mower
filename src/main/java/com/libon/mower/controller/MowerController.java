@@ -13,6 +13,11 @@ import com.libon.mower.dto.MowerResult;
 import com.libon.mower.dto.MowerSimulationRequest;
 import com.libon.mower.service.MowerSimulationService;
 
+import jakarta.validation.Valid;
+/**
+ * REST controller providing HTTP endpoints for mower simulation operations.
+ * Base URL: /api/mowers
+ */
 @RestController
 @RequestMapping("/api/mowers")
 public class MowerController {
@@ -23,9 +28,16 @@ public class MowerController {
         this.simulationService = simulationService;
     }
     
+    /**
+     * Simulates mower movements based on provided instructions.
+     * 
+     * This endpoint accepts a JSON payload describing a field and multiple
+     * mowers with their starting positions and instruction sequences.
+     * Each mower executes its instructions completely before the next begins.
+     */
     @PostMapping("/simulate")
     public ResponseEntity<List<MowerResult>> simulate(
-            @RequestBody MowerSimulationRequest request) {
+            @Valid @RequestBody MowerSimulationRequest request) {
         
         List<MowerResult> results = simulationService.simulate(request);
         return ResponseEntity.ok(results);

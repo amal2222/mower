@@ -6,14 +6,26 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.libon.mower.domain.Instruction;
 import com.libon.mower.domain.Orientation;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 public class MowerRequest {
+    @NotBlank
     private String id;
 
+    @Valid
+    @NotNull
     @JsonProperty("start_position")
     private PositionDto startPosition;
     
+    @NotNull
     private Orientation orientation;
+
+    @NotEmpty
     private List<Instruction> instructions;
+    
     public MowerRequest(String id, PositionDto startPosition, Orientation orientation, List<Instruction> instructions) {
         this.id = id;
         this.startPosition = startPosition;
